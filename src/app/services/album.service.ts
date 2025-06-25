@@ -49,8 +49,8 @@ export class AlbumService {
   }
 
   dropArtist(albumId: number, artistId: number): Observable <Album>{
-    return this.http.post<Album>(
-     `${this.baseUrl}/${albumId}/drop/${artistId}`,
+    return this.http.delete<Album>(
+     `${this.baseUrl}/${albumId}/artists/${artistId}`,
      {}
     );
   }

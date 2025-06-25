@@ -45,7 +45,7 @@ export class AlbumFormComponent implements OnInit {
   isEditMode = false;
   albumId?: number;
   errorMessage = '';
-displayedColumns: string[] = ['firstName', 'lastName', 'country','status'];
+displayedColumns: string[] = ['firstName', 'lastName', 'country','status','drop'];
 displayedTrackColumns: string[] = ['id','title','language','duration','releaseDate','producer','status'];
 
 // displayedTrackColumns: string[] = ['title', 'language', 'producer'];
@@ -96,7 +96,6 @@ displayedTrackColumns: string[] = ['id','title','language','duration','releaseDa
           //trackId: salbum.track.id,
           albumName: salbum.albumName,
           genre: salbum.genre,
-
           format: salbum.format,
           description: salbum.description,
           totalTracks: salbum.totalTracks
@@ -182,10 +181,9 @@ cancel(): void {
   dropArtist(artistId: number): void{
     if(!this.albumId) return;
     this.albumSvc.dropArtist(this.albumId, artistId).subscribe({
-       next: (updatedAlbum) => {
+      next:(updatedAlbum) =>{
         this.registeredArtists = updatedAlbum.artists || [];
-
-       },
+      },
         error: () => this.errorMessage = 'Error dropping student'
     });
   }
