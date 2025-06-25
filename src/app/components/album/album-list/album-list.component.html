@@ -1,0 +1,26 @@
+<div class="addButton">
+  <button mat-flat-button color="primary" (click)="addAlbum()">Add Artist</button>
+</div>
+<div class="row">
+  @for (album of albums; track album.id) {
+  <div class="card-client">
+    <div class="user-picture">
+      <mat-icon>album</mat-icon>
+    </div>
+    <p class="name-client"> {{album.albumName}}
+      <span>
+      </span>
+    </p>
+    <div class="social-media">
+    </div>
+    <p class="name-client"> {{album.description}}
+    <p class="name-client"> {{album.format}}
+    <p class="name-client"> {{album.genre}}
+      <span>
+      </span>
+    </p>
+    <button mat-raised-button (click)=editAlbum(album)>Edit</button>
+    <button mat-raised-button (click)="router.navigate(['/albums',  album.id, 'view'])"> view</button>
+  </div>
+  }
+</div>

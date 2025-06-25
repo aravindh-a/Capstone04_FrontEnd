@@ -1,0 +1,57 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Edit artist' : 'Add New artist' }}</h2>
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit()">
+
+    <mat-card-content>
+      <div class="form-field">
+        <mat-form-field class="example-full-width" color="primary" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field class="example-full-width" color="primary" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field class="example-full-width" color="primary" appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field class="example-full-width" color="primary" appearance="outline">
+          <mat-label>Bio</mat-label>
+          <input matInput formControlName="bio" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field class="example-full-width" color="primary" appearance="outline">
+          <mat-label>DOB</mat-label>
+          <input matInput [matDatepicker]="picker" id="birthDate" class="form-control" formControlName="birthDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+
+    </mat-card-content>
+    <div class="button-container">
+      <mat-card-actions>
+        <div><button class="my-custom-button" mat-fab extended color="primary" type="submit" [disabled]="artistForm.invalid">
+          Submit
+        </button></div>
+        <div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()"> <mat-icon>arrow_back</mat-icon> Back</a></div>
+      </mat-card-actions>
+    </div>
+
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

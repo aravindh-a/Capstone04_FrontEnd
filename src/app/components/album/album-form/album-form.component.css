@@ -1,0 +1,103 @@
+
+
+.container{
+justify-items: center;
+height:fit-content;
+
+}
+
+.example-full-width {
+
+  width: 500px;
+
+}
+
+
+
+  .custom-table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+mat-header-cell {
+  font-weight: bold;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+mat-cell {
+  padding: 12px;
+  font-size: 14px;
+}
+
+mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+mat-header-cell {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+mat-cell {
+  padding: 12px;
+  font-size: 14px;
+}
+
+mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+mat-header-cell {
+  font-weight: bold;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+mat-cell {
+  padding: 12px;
+  font-size: 14px;
+}
+
+mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+.button-container {
+  display: flex;
+  justify-content:center;
+  margin-top: 10px;
+
+}
+
+/* mat-card-actions {
+  display: flex;
+  gap: 300px;
+} */
+
+.my-custom-button {
+      width: 250px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+.Table{
+  display: flex;
+  align-items: flex-start;
+}
+
+

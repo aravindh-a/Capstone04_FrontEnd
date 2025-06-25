@@ -1,0 +1,39 @@
+@if (albums) {
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <mat-card class="card-client">
+    <h2 class="name-client">Album Details</h2>
+    <h2 class="name-client">Name : {{albums.albumName}} </h2>
+    <p class="name-client">Desc: {{albums.description}}</p>
+    <p class="name-client">Genre: {{albums.genre}}</p>
+    <p class="name-client">Format: {{albums.format}}</p>
+    <p class="name-client">Total No of Track: {{albums.totalTracks}}</p>
+  </mat-card>
+
+
+
+    <mat-card class="card-client">
+    <H3>List of Artists</H3>
+
+      <div>@for (artist of albums.artists; track artist.id) {
+        <p class="name-client"> {{artist.firstName}} - {{artist.bio}}</p>
+        <button mat-raised-button>View Artist details</button>
+        }
+      </div>
+    </mat-card>
+
+
+
+
+  <mat-card class="card-client">
+
+    <h3>List of Tracks</h3>
+    <div>@for (track1 of albums.tracks; track track1.id) {
+      <p class="name-client">{{track1.title}}
+        <p class="name-client">{{track1.language}}
+          }
+    </div>
+  </mat-card>
+
+
+</div>
+}

@@ -1,0 +1,197 @@
+<mat-tab-group >
+  <mat-tab label="Album">
+    <div class="container">
+      <h2>{{ isEditMode ? 'Edit album' : 'New Album' }}</h2>
+      <form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field class="example-full-width" color="primary" appearance="outline">
+            <mat-label>Album Title</mat-label>
+            <input matInput placeholder="Ex. Pizza" id="albumName" type="text" class="form-control"
+              formControlName="albumName" />
+            <div *ngIf="albumForm.get('albumName')?.touched && albumForm.get('albumName')?.invalid" class="text-danger">
+              <small>Title is required.</small>
+            </div>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width" color="primary" appearance="outline">
+            <mat-label>Format</mat-label>
+            <input matInput placeholder="Ex. Pizza" id="format" type="text" class="form-control"
+              formControlName="format" />
+            <div *ngIf="albumForm.get('format')?.touched && albumForm.get('format')?.invalid" class="text-danger">
+              <small>Format is required.</small>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width" color="primary" appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Ex. Pizza" id="description" type="text" class="form-control"
+              formControlName="description" />
+            <div *ngIf="albumForm.get('description')?.touched && albumForm.get('description')?.invalid"
+              class="text-danger">
+              <small>Format is required.</small>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width" color="primary" appearance="outline">
+            <mat-label>Total Track</mat-label>
+            <input matInput placeholder="Ex. Pizza" id="totalTracks" type="number" class="form-control"
+              formControlName="totalTracks" />
+            <div *ngIf="albumForm.get('totalTracks')?.touched && albumForm.get('totalTracks')?.invalid"
+              class="text-danger">
+              <small>Total Track is required.</small>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width" color="primary" appearance="outline">
+            <mat-label for="genre" class="form-label">Select</mat-label>
+            <mat-select id="genre" class="form-select" formControlName="genre" [(value)]="selectedGenre">
+              <!-- <mat-option *ngFor="let key of genres" [value]="key">{{key }}</mat-option> -->
+              @for (key of genres; track key) {
+              <mat-option [value]="key"> {{key }} </mat-option>
+              }
+            </mat-select>
+            <div *ngIf="albumForm.get('status')?.touched && albumForm.get('genre')?.invalid" class="text-danger">
+              <small>Genre is required.</small>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="button-container">
+          <mat-card-actions>
+            <div><button class="my-custom-button" mat-fab extended color="primary" type="submit"
+                [disabled]="albumForm.invalid">
+                Submit
+              </button></div>
+            <div class="button-container"> <a class="my-custom-button" mat-fab extended (click)="cancel()">
+                <mat-icon>arrow_back</mat-icon> Back</a></div>
+          </mat-card-actions>
+        </div>
+      </form>
+      <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div> -->
+    </div>
+  </mat-tab>
+
+
+
+  <mat-tab label="Registered Artists">
+
+    <div class="Table">
+      <div *ngIf="isEditMode">
+        <h3>List of Artists</h3>
+        <table mat-table [dataSource]="allArtist" class="mat-elevation-z8">
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let artists"> {{artists.id}} </td>
+          </ng-container>
+
+          <!-- First Name Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let artists"> {{artists.firstName}} </td>
+          </ng-container>
+
+          <!-- Last Name Column -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let artists"> {{artists.lastName}} </td>
+          </ng-container>
+
+          <!-- Country Column -->
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <td mat-cell *matCellDef="let artists"> {{artists.country}} </td>
+          </ng-container>
+
+          <!-- Bio Column -->
+          <ng-container matColumnDef="bio">
+            <th mat-header-cell *matHeaderCellDef> Bio </th>
+            <td mat-cell *matCellDef="let artist"> {{artist.bio}} </td>
+          </ng-container>
+
+          <!-- Birth Date Column -->
+          <ng-container matColumnDef="birthDate">
+            <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+            <td mat-cell *matCellDef="let s  of artist"> {{s.birthDate | date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status</th>
+            <td mat-cell *matCellDef="let s  of artist"> <button mat-flat-button (click)="addArtistToAlbum(s.id!)"
+                class="btn btn-sm btn-success" [disabled]="isRegistered(s)">
+                {{ isRegistered(s) ? 'Registered' : 'Register' }}
+              </button> </td>
+          </ng-container>
+
+          <!-- Header and Row Declarations -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+
+
+
+
+  <mat-tab label="Registered Tracks">
+
+    <div class="Table">
+      <div *ngIf="isEditMode">
+        <h3>List of Tracks</h3>
+        <table mat-table [dataSource]="allTrack" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.title}} </td>
+          </ng-container>
+          <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef> Language </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.language}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef> Duration </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.duration}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="releaseDate">
+            <th mat-header-cell *matHeaderCellDef> Release Date </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.releaseDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="producer">
+            <th mat-header-cell *matHeaderCellDef> Producer </th>
+            <td mat-cell *matCellDef="let tracks"> {{tracks.producer}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status</th>
+            <td mat-cell *matCellDef="let s  of tracks"> <button mat-flat-button (click)="addTrackToAlbum(s.id!)"
+                class="btn btn-sm btn-success" [disabled]="isRegistered(s)">
+                {{ isRegistered(s) ? 'Registered' : 'Register' }}
+              </button> </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedTrackColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedTrackColumns;"></tr>
+        </table>
+
+      </div>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

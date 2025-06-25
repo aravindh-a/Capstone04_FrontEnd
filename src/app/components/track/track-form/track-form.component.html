@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Edit Track' : 'Add New Track' }}</h2>
+  <form [formGroup]="trackForm" (ngSubmit)="onSubmit()">
+
+
+    <div>
+      <mat-form-field class="example-full-width"  color="primary" appearance="outline">
+        <mat-label>Track Title</mat-label>
+        <input matInput placeholder="Ex. Track1" id="title" type="text" class="form-control" formControlName="title" />
+        <div *ngIf="trackForm.get('title')?.touched && trackForm.get('title')?.invalid" class="text-danger">
+          <small>Title is required.</small>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width"  color="primary" appearance="outline">
+        <mat-label>Track Duration</mat-label>
+        <input matInput placeholder="Ex. Pizza" id="duration" type="text" class="form-control"
+          formControlName="duration" />
+        <div *ngIf="trackForm.get('duration')?.touched && trackForm.get('duration')?.invalid" class="text-danger">
+          <small>Title is required.</small>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width"  color="primary" appearance="outline">
+        <mat-label>Release Date</mat-label>
+        <input matInput id="releaseDate"  matInput [matDatepicker]="picker"  class="form-control" formControlName="releaseDate" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <div *ngIf="trackForm.get('releaseDate')?.touched && trackForm.get('releaseDate')?.invalid" class="text-danger">
+          <small>Title is required.</small>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width"  color="primary" appearance="outline">
+        <mat-label>Language</mat-label>
+        <input matInput placeholder="Ex. English" id="language" type="text" class="form-control"
+          formControlName="language" />
+        <div *ngIf="trackForm.get('language')?.touched && trackForm.get('language')?.invalid" class="text-danger">
+          <small>Language is required.</small>
+        </div>
+      </mat-form-field>
+    </div>
+
+     <div>
+      <mat-form-field class="example-full-width"  color="primary" appearance="outline">
+        <mat-label>Producer</mat-label>
+        <input matInput placeholder="Ex. AR Studio" id="producer" type="text" class="form-control"
+          formControlName="producer" />
+        <div *ngIf="trackForm.get('producer')?.touched && trackForm.get('producer')?.invalid" class="text-danger">
+          <small>Producer is required.</small>
+        </div>
+      </mat-form-field>
+    </div>
+
+
+
+     <div class="button-container">
+      <mat-card-actions>
+        <div><button class="my-custom-button" mat-fab extended color="primary" type="submit" [disabled]="trackForm.invalid">
+          Submit
+        </button></div>
+        <div class="button-container"> <a class="my-custom-button" mat-fab extended  (click)="cancel()"> <mat-icon>arrow_back</mat-icon> Back</a></div>
+      </mat-card-actions>
+    </div>
+
+  </form>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

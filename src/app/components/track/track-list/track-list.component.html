@@ -1,0 +1,37 @@
+
+
+<div class="addButton">
+  <button mat-flat-button color="primary" (click)="addTrack()">Add Track</button>
+</div>
+
+
+<div class="row">
+    @for (track of tracks; track track.id) {
+    <div class="card-client">
+      <div class="user-picture">
+      <mat-icon>music_note</mat-icon>
+      </div>
+      <p class="name-client"> {{track.title}}
+        <span>
+        </span>
+      </p>
+
+      <div class="social-media">
+      </div>
+        <p class="name-client">Language:  {{track.language}}
+        <p class="name-client">Duration:  {{track.duration}}
+        <p class="name-client">Release Date {{track.releaseDate}}
+        <p class="name-client">Producer:  {{track.producer}}
+        <span>
+
+        </span>
+      </p>
+
+      <button mat-raised-button (click)="deleteTrack(track)">Delete</button>
+      <button mat-raised-button (click)="editTrack(track)">
+        Edit
+      </button>
+
+    </div>
+    }
+  </div>
