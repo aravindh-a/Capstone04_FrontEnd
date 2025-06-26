@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%);
+}
+
+.register-card {
+  width: 380px;
+  padding: 32px 24px 24px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.15);
+  background: #fff;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -40px;
+  margin-bottom: 8px;
+}
+
+.avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  width: 80px;
+  height: 80px;
+  background: #e3f2fd;
+  border-radius: 50%;
+  color: #1976d2;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  border: 3px solid #fff;
+}
+
+mat-card-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+mat-card-subtitle {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.register-btn {
+  width: 100%;
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.alert {
+  margin-top: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-link-container {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.login-link {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+.login-link:hover {
+  color: #1565c0;
+  text-decoration: underline;
+}

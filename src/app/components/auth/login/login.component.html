@@ -1,0 +1,60 @@
+<!-- <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg rounded">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Login</h2>
+          <form (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          <p class="mt-3 text-center">
+            Don't have an account? <a routerLink="/register" routerLinkActive="active">Register here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <mat-card class="mat-elevation-z8 login-card">
+    <div class="avatar-container">
+      <mat-icon class="avatar-icon" color="primary">lock</mat-icon>
+    </div>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Access your account</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" id="username" [(ngModel)]="username" name="username" required #usernameCtrl="ngModel" />
+          <mat-error *ngIf="usernameCtrl.invalid && usernameCtrl.touched">Username is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" [(ngModel)]="password" name="password" required #passwordCtrl="ngModel" />
+          <mat-error *ngIf="passwordCtrl.invalid && passwordCtrl.touched">Password is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" class="login-btn" [disabled]="!username || !password">
+          Login
+        </button>
+      </form>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+      <div class="register-link-container">
+        <span>Don't have an account?</span>
+        <a routerLink="/register" routerLinkActive="active" class="register-link">Register here</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
